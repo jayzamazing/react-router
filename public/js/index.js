@@ -57,6 +57,11 @@ var ContactList = function(props) {
 var ContactListContainer = function() {
     return <ContactList contacts={CONTACTS} />;
 };
+var ContactContainer = function(props) {
+    var contact = CONTACTS[props.params.contactId];
+    return <Contact id={contact.id} name={contact.name}
+                    phoneNumber={contact.phoneNumber} />;
+};
 
 var App = function(props) {
     return (
@@ -74,6 +79,7 @@ var routes = (
     <Router history={hashHistory}>
         <Route path="/contacts" component={App}>
             <IndexRoute component={ContactListContainer} />
+            <Route path=":contactId" component={ContactContainer} />
         </Route>
     </Router>
 );
